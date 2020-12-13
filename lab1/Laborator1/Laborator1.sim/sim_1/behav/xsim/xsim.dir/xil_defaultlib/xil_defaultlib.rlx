@@ -1,0 +1,16 @@
+0.7
+2020.1.1
+Aug  5 2020
+23:19:43
+D:/cn2/lab1/Laborator1/Laborator1.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_multifunc_reg.v,1603390536,verilog,,,,test_multifunc_reg,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_mux.v,1603835260,verilog,,,,test_mux,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_pipeline.v,1603918098,verilog,,,,test_pipeline,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/multifunc_reg.v,1603920934,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_multifunc_reg.v,,multifunc_reg,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/mux2_1.v,1603912862,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/mux4_1.v,,mux2_1,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/mux4_1.v,1603912832,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/mux8_1.v,,mux4_1,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/mux8_1.v,1603912841,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myAnd.v,,mux8_1,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myAnd.v,1603833788,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myNot.v,,myAnd,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myNot.v,1603834620,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myOr.v,,myNot,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/myOr.v,1603892204,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_mux.v,,myor,,,,,,,,
+D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/pipeline.v,1603389260,verilog,,D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_pipeline.v,,pipeline;reg_div;simple_reg1;simple_reg2,,,,,,,,

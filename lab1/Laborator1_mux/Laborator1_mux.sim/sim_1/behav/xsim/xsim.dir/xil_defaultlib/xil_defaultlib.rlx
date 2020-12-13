@@ -1,0 +1,12 @@
+0.7
+2020.1.1
+Aug  5 2020
+23:19:43
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sim_1/new/test_mux.v,1603903676,verilog,,,,test_mux,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux2_1.v,1603910984,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux4_1.v,,mux2_1,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux4_1.v,1603911567,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux8_1.v,,mux4_1,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux8_1.v,1603910851,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myand.v,,mux8_1,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myand.v,1603893039,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mynot.v,,myand,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mynot.v,1603893159,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myor.v,,mynot,,,,,,,,
+D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myor.v,1603893123,verilog,,D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sim_1/new/test_mux.v,,myor,,,,,,,,

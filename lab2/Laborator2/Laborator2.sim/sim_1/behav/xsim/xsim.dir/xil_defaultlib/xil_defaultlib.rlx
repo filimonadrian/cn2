@@ -1,0 +1,20 @@
+0.7
+2020.1.1
+Aug  5 2020
+23:19:43
+D:/cn2/lab2/Laborator2/Laborator2.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sim_1/new/test_ex3.v,1606391804,verilog,,,,test_ex3,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/ID.v,1606336098,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/IF.v,,ID,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/IF.v,1606335950,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/PC.v,,IF,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/PC.v,1606334537,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/RISC_V_IF_ID.v,,PC,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/RISC_V_IF_ID.v,1606336195,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/adder.v,,RISC_V_IF_ID,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/adder.v,1606336720,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/imm_gen.v,,adder,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/imm_gen.v,1606337250,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/memory_instruction.v,,imm_gen,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/memory_instruction.v,1606336278,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/mux2_1.v,,memory_instruction,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/mux2_1.v,1606336781,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/pipeline.v,,mux2_1,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/myand.v,1605192295,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/mynot.v,,myand,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/mynot.v,1605192344,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/myor.v,,mynot,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/myor.v,1605192278,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/pipeline.v,,myor,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/pipeline.v,1606330213,verilog,,D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/registers.v,,pipeline,,,,,,,,
+D:/cn2/lab2/Laborator2/Laborator2.srcs/sources_1/new/registers.v,1606392904,verilog,,D:/cn2/lab2/Lucrare2/Lucrare2/test_riscv.v,,registers,,,,,,,,
+D:/cn2/lab2/Lucrare2/Lucrare2/test_riscv.v,1604231388,verilog,,,,RISC_V_TB,,,,,,,,

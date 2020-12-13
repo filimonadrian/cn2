@@ -1,0 +1,21 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux2_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux2_1
+INFO: [VRFC 10-2458] undeclared symbol not_sel, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux2_1.v:28]
+INFO: [VRFC 10-2458] undeclared symbol w1, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux2_1.v:29]
+INFO: [VRFC 10-2458] undeclared symbol w2, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux2_1.v:30]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux4_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux4_1
+INFO: [VRFC 10-2458] undeclared symbol w1, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux4_1.v:34]
+INFO: [VRFC 10-2458] undeclared symbol w2, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux4_1.v:35]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux8_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux8_1
+INFO: [VRFC 10-2458] undeclared symbol w1, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux8_1.v:38]
+INFO: [VRFC 10-2458] undeclared symbol w2, assumed default net type wire [D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mux8_1.v:39]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myand.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module myand
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/mynot.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mynot
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sources_1/new/myor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module myor
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1_mux/Laborator1_mux.srcs/sim_1/new/test_mux.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module test_mux

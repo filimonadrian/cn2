@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Laborator2.srcs/sources_1/new/IF.v" \
+"../../../../Laborator2.srcs/sources_1/new/PC.v" \
+"../../../../Laborator2.srcs/sources_1/new/adder.v" \
+"../../../../Laborator2.srcs/sources_1/new/memory_instruction.v" \
+"../../../../Laborator2.srcs/sources_1/new/mux2_1.v" \
+"../../../../Laborator2.srcs/sim_1/new/test_if.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

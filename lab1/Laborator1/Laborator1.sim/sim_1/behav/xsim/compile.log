@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1/Laborator1.srcs/sources_1/new/pipeline.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module reg_div
+INFO: [VRFC 10-311] analyzing module simple_reg1
+INFO: [VRFC 10-311] analyzing module simple_reg2
+INFO: [VRFC 10-311] analyzing module pipeline
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/cn2/lab1/Laborator1/Laborator1.srcs/sim_1/new/test_pipeline.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module test_pipeline

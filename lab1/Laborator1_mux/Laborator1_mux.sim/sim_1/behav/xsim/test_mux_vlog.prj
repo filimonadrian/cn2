@@ -1,0 +1,15 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Laborator1_mux.srcs/sources_1/new/mux2_1.v" \
+"../../../../Laborator1_mux.srcs/sources_1/new/mux4_1.v" \
+"../../../../Laborator1_mux.srcs/sources_1/new/mux8_1.v" \
+"../../../../Laborator1_mux.srcs/sources_1/new/myand.v" \
+"../../../../Laborator1_mux.srcs/sources_1/new/mynot.v" \
+"../../../../Laborator1_mux.srcs/sources_1/new/myor.v" \
+"../../../../Laborator1_mux.srcs/sim_1/new/test_mux.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
