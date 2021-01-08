@@ -44,44 +44,74 @@ module IF_ID_reg(clk,reset,write,pc_in,instruction_in,pc_out,instruction_out);
 endmodule
 
 
-module pipe_EX_MEM(input clk,
-                  // semnale pentru scriere
+module pipe_EX_MEM(input clk, reset,
+
+                  // semnale pentru wb
+                  input MemtoReg_EX,
+                  input RegWrite_EX,
+
+                  // semnale pentru mem
+                   input Branch_EX,
                    input MemWrite_EX,
-                   input RegWrite_EX,
-                   // semnale pentru citire
-                   input MemtoReg_EX,
-                   input MemRead_EX,
-                   
+                   input MemRead_EX,                  
                    input ZERO_EX,
-                   input [31:0] Branch_EX,
+                  
+                  // adresa registrului destinatie in etapa EX
+                   input [4:0] RD_EX,
+                  
                    input [31:0] ALU_OUT_EX,
+                   input [31:0] PC_Branch_EX,
                    input [31:0] REG_DATA2_EX_FINAL,
-                   
-                   // semnale pentru scriere
-                   output MemWrite_MEM,
-                   output RegWrite_MEM,
-                   // semnale pentru citire
-                   output MemtoReg_MEM,
-                   output MemRead_MEM,
-                   
-                   output ZERO_MEM,
-                   output [31:0] Branch_MEM,
-                   output [31:0] ALU_OUT_MEM,
-                   output [31:0] REG_DATA2_MEM_FINAL   
+
+                  // semnale pentru wb
+                   output reg MemtoReg_MEM,
+                   output reg RegWrite_MEM,
+
+                  // semnale pentru mem
+                   output reg Branch_MEM,
+                   output reg MemWrite_MEM,
+                   output reg MemRead_MEM,
+                   output reg ZERO_MEM,
+
+                   // adresa registrului destinatie in etapa EX
+                   output reg [4:0] RD_MEM,
+
+                   output reg [31:0] ALU_OUT_MEM,
+                   output reg [31:0] PC_Branch_MEM,
+                   output reg [31:0] REG_DATA2_MEM_FINAL   
     );
-    
+
     always@(posedge clk) begin
-        
-                
-        MemWrite_MEM = MemWrite_MEM;
-        RegWrite_MEM = 
-        MemtoReg_MEM = 
-        MemRead_MEM = 
-        ZERO_MEM = 
-        Branch_MEM = 
-        ALU_OUT_MEM = 
-        REG_DATA2_MEM_FINAL = 
-    end    
+      if (reset) begin
+
+        MemtoReg_MEM = 0;
+        RegWrite_MEM = 0;
+        Branch_MEM = 0;
+        MemWrite_MEM = 0;
+        MemRead_MEM = 0;
+        RegWrite_MEM = 0;
+        ZERO_MEM = 0;
+        RD_MEM = 0;
+        ALU_OUT_MEM = 0;
+        PC_Branch_MEM = 0;
+        REG_DATA2_MEM_FINAL = 0;
+
+      end
+      else begin
+
+        MemtoReg_MEM = MemtoReg_EX;
+        RegWrite_MEM = RegWrite_EX;
+        Branch_MEM = Branch_EX;
+        MemWrite_MEM = MemWrite_EX;
+        MemRead_MEM = MemRead_EX;
+        ZERO_MEM = ZERO_EX;
+        RD_MEM = RD_EX;
+        ALU_OUT_MEM = ALU_OUT_EX;
+        PC_Branch_MEM = PC_Branch_EX;
+        REG_DATA2_MEM_FINAL = REG_DATA2_EX_FINAL;
+
+      end
+    end
     
     
 endmodule
