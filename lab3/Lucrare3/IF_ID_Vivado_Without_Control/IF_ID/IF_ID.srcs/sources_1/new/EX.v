@@ -46,5 +46,16 @@ module EX(input [31:0] IMM_EX,
           output [31:0] PC_Branch_EX,
           output [31:0] REG_DATA2_EX_FINAL
           );
+    
+    // alegerea valorii corecte in cazul unui hazard
+    // mux 1 : primeste rs1 
+    // mux 2 : primeste rs2 sau valoarea imediata
+    mux4_1 mux1();    
+    mux4_1 mux2();
 
+    // mux 2_1: alege valoarea imediata sau valoarea unui registru, selectia este alu_src    
+    mux2_1 reg_or_imm(rs1, rs2, ALUSrc_EX, !!!!OUT_mux);
+    
+    
+    
 endmodule

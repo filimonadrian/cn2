@@ -26,11 +26,64 @@ module control_path(input [6:0] opcode,
                     output reg [1:0] ALUop);
                     
     always @(control_sel) begin
-        case (opcode)
-            2'b0111011: 
-                ALUop = 1;
-            
-        endcase
+        if (control_sel == 0) begin
+            case (opcode)
+            // R-format
+            7'b0111011: begin 
+                ALUop[1] = 1;
+                ALUop[0] = 0;
+                MemRead = 0;
+                MemtoReg = 0;
+                MemWrite = 0;
+                RegWrite = 1;
+                Branch = 0;
+                ALUSrc = 0;
+            end
+            // load - I format
+            7'b0000011: begin
+                ALUop[1] = 0;
+                ALUop[0] = 0;
+                MemRead = 1;
+                MemtoReg = 1;
+                MemWrite = 0;
+                RegWrite = 1;
+                Branch = 0;
+                ALUSrc = 1;
+            end
+            // store - S-format 
+            7'b0100011: begin
+                ALUop[1] = 0;
+                ALUop[0] = 0;
+                MemRead = 0;
+                MemtoReg = 0;
+                MemWrite = 1;
+                RegWrite = 0;
+                Branch = 0;
+                ALUSrc = 1;
+            end
+            // branch --B format
+            7'b1100011: begin
+                ALUop[1] = 0;
+                ALUop[0] = 1;
+                MemRead = 0;
+                MemtoReg = 0;
+                MemWrite = 0;
+                RegWrite = 0;
+                Branch = 1;
+                ALUSrc = 0;
+            end
+            endcase
+        end
+        else begin
+            ALUop[1] = 0;
+            ALUop[0] = 0;
+            MemRead = 0;
+            MemtoReg = 0;
+            MemWrite = 0;
+            RegWrite = 0;
+            Branch = 0;
+            ALUSrc = 0;
+        end 
     end
     
     

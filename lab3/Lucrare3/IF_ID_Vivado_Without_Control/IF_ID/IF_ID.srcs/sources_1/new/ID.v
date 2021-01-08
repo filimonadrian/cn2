@@ -26,6 +26,6 @@ module ID(input clk,
                                  ALU_DATA_WB,
                                  REG_DATA1_ID,REG_DATA2_ID);
   
-  imm_gen IMM_GEN_MODULE(INSTRUCTION_ID,IMM_ID);
+  imm_gen IMM_GEN_MODULE(INSTRUCTION_ID,IMM_ID);           
 
 endmodule
