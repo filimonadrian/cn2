@@ -4,7 +4,6 @@ verilog xil_defaultlib  \
 "../../../../IF_ID.srcs/sources_1/new/IF.v" \
 "../../../../IF_ID.srcs/sources_1/imports/IF_ID/PC.v" \
 "../../../../IF_ID.srcs/sources_1/imports/IF_ID/adder.v" \
-"../../../../IF_ID.srcs/sources_1/new/control_path.v" \
 "../../../../IF_ID.srcs/sources_1/imports/IF_ID/if_id_pipe.v" \
 "../../../../IF_ID.srcs/sources_1/imports/IF_ID/imm_gen.v" \
 "../../../../IF_ID.srcs/sources_1/imports/IF_ID/instruction_memory.v" \

@@ -47,15 +47,23 @@ module EX(input [31:0] IMM_EX,
           output [31:0] REG_DATA2_EX_FINAL
           );
     
-    // alegerea valorii corecte in cazul unui hazard
-    // mux 1 : primeste rs1 
-    // mux 2 : primeste rs2 sau valoarea imediata
-    mux4_1 mux1();    
-    mux4_1 mux2();
+    wire [31:0] out_mux1;
+    wire [31:0] out_mux2;
+    wire [31:0] out_mux_reg_or_imm;
+    wire [3:0] out_alu_control;
 
-    // mux 2_1: alege valoarea imediata sau valoarea unui registru, selectia este alu_src    
-    mux2_1 reg_or_imm(rs1, rs2, ALUSrc_EX, !!!!OUT_mux);
+    // alegerea valorii corecte in cazul unui hazard
+    mux4_1 mux1(REG_DATA1_EX, ALU_DATA_WB, ALU_OUT_MEM, 0, forwardA, out_mux1);    
+    mux4_1 mux2(REG_DATA2_EX, ALU_DATA_WB, ALU_OUT_MEM, 0, forwardB, out_mux2);
+
+    // mux 2_1: alege valoarea imediata sau valoarea unui registru, selectia este alu_src
+    // DACA ALUSrc_EX este 1 returnez prima valoare ====?>  trebuie sa fie valoarea imediata
+    mux2_1 reg_or_imm(IMM_EX, out_mux2, ALUSrc_EX, out_mux_reg_or_imm);
     
+    ALUcontrol alucontrol(ALUop_EX, FUNCT7_EX, FUNCT3_EX, out_alu_control);
+    ALU alu(out_alu_control, out_mux1, out_mux_reg_or_imm, ZERO_EX, ALU_OUT_EX);
     
+    // adauga la PC-ul curent offsetul de salt
+    adder calculate_addr(PC_EX, IMM_EX, PC_Branch_EX);        
     
 endmodule

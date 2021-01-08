@@ -2,13 +2,13 @@
 # Webtalk v2020.1.1 (64-bit)
 # SW Build 2960000 on Wed Aug  5 22:57:20 MDT 2020
 # IP Build 2956692 on Thu Aug  6 01:41:30 MDT 2020
-# Start of session at: Fri Jan  8 14:43:05 2021
-# Process ID: 28048
+# Start of session at: Fri Jan  8 14:41:01 2021
+# Process ID: 16496
 # Current directory: D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim
 # Command line: wbtcv.exe -mode batch -source D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim/xsim.dir/RISC_V_TB_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
 source D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim/xsim.dir/RISC_V_TB_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim/xsim.dir/RISC_V_TB_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri Jan  8 14:43:08 2021. For additional details about this file, please refer to the WebTalk help file at D:/Xilinx/Vivado/2020.1/doc/webtalk_introduction.html.
-INFO: [Common 17-206] Exiting Webtalk at Fri Jan  8 14:43:08 2021...
+INFO: [Common 17-186] 'D:/cn2/lab3/Lucrare3/IF_ID_Vivado_Without_Control/IF_ID/IF_ID.sim/sim_1/behav/xsim/xsim.dir/RISC_V_TB_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri Jan  8 14:41:04 2021. For additional details about this file, please refer to the WebTalk help file at D:/Xilinx/Vivado/2020.1/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Fri Jan  8 14:41:04 2021...
