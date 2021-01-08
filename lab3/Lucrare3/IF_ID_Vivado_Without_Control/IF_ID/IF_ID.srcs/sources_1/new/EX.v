@@ -60,6 +60,8 @@ module EX(input [31:0] IMM_EX,
     // DACA ALUSrc_EX este 1 returnez prima valoare ====?>  trebuie sa fie valoarea imediata
     mux2_1 reg_or_imm(IMM_EX, out_mux2, ALUSrc_EX, out_mux_reg_or_imm);
     
+    assign REG_DATA2_EX_FINAL = out_mux2;
+        
     ALUcontrol alucontrol(ALUop_EX, FUNCT7_EX, FUNCT3_EX, out_alu_control);
     ALU alu(out_alu_control, out_mux1, out_mux_reg_or_imm, ZERO_EX, ALU_OUT_EX);
     
