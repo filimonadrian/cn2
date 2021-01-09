@@ -60,13 +60,13 @@ module ALU(input [3:0] ALUop,
                 out = ina ^ inb;
             // srl, srli 
             4'b0101: 
-                out = ina >> inb;
+                out = ina >> inb[4:0];
             // sll, slli 
             4'b0100: 
-                out = ina << inb;
+                out = ina << inb[4:0];
             // sra, srai 
             4'b1001: 
-                out = ina >>> inb;
+                out = ina >>> inb[4:0];
             // sltu, bltu, bgeu 
             4'b0111: 
                 if (ina < inb) begin
@@ -76,7 +76,7 @@ module ALU(input [3:0] ALUop,
                         out = 32'b0;
                     end
             // slt, blt, bge
-            4'b1000:     // este posibil ca if-ul  sa fie inversat
+            4'b1000:
                 if ($signed(ina) < $signed(inb)) begin
                     out = 32'b1;
                     end
@@ -87,7 +87,7 @@ module ALU(input [3:0] ALUop,
         endcase
         
         zero = 0;
-        if (out[32:0] == 32'b00000000000000000000000000000000) begin
+        if (out[31:0] == 32'b0) begin
             zero = 1;
         end     
     end

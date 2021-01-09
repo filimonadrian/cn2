@@ -58,7 +58,7 @@ module EX(input [31:0] IMM_EX,
 
     // mux 2_1: alege valoarea imediata sau valoarea unui registru, selectia este alu_src
     // DACA ALUSrc_EX este 1 returnez prima valoare ====?>  trebuie sa fie valoarea imediata
-    mux2_1 reg_or_imm(IMM_EX, out_mux2, ALUSrc_EX, out_mux_reg_or_imm);
+    mux2_1 reg_or_imm(out_mux2, IMM_EX, ALUSrc_EX, out_mux_reg_or_imm);
     
     assign REG_DATA2_EX_FINAL = out_mux2;
         

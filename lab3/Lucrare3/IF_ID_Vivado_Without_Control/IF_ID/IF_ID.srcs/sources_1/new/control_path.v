@@ -25,11 +25,11 @@ module control_path(input [6:0] opcode,
                     output reg MemRead, MemtoReg, MemWrite, RegWrite, Branch, ALUSrc,
                     output reg [1:0] ALUop);
                     
-    always @(control_sel) begin
+    always @(control_sel, opcode) begin
         if (control_sel == 0) begin
             case (opcode)
             // R-format
-            7'b0111011: begin 
+            7'b0110011: begin 
                 ALUop[1] = 1;
                 ALUop[0] = 0;
                 MemRead = 0;
@@ -72,6 +72,17 @@ module control_path(input [6:0] opcode,
                 Branch = 1;
                 ALUSrc = 0;
             end
+            7'b0010011: begin
+                ALUop[1] = 1;
+                ALUop[0] = 1;
+                MemRead = 0;
+                MemtoReg = 0;
+                MemWrite = 0;
+                RegWrite = 1;
+                Branch = 0;
+                ALUSrc = 1;
+            end
+                        
             endcase
         end
         else begin

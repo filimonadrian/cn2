@@ -28,7 +28,7 @@ module ALUcontrol(input [1:0] ALUop,
   always @(*) begin
         casex ({ALUop, funct3, funct7})
             // ld and sd -- funct3 and funct7 are random
-            2'b000000000000: 
+            12'b000000000000: 
                 ALUinput = 0010;
             // R type -- funct 3 and funct7 are defined
             // add
@@ -43,7 +43,10 @@ module ALUcontrol(input [1:0] ALUop,
             // or
             12'b101100000000:
                 ALUinput = 0001;
-                
+            // ori
+            12'b111100000000:
+                ALUinput = 0001;
+
             // xor 10 100 0000000
             12'b101000000000:
                 ALUinput = 0011;
@@ -70,7 +73,7 @@ module ALUcontrol(input [1:0] ALUop,
             12'b010000000000:
                 ALUinput = 0110;
             // bne 01 001 0000000
-            12'b010000000000:
+            12'b010010000000:
                 ALUinput = 0110;
             // blt 01 100 0000000
             12'b011000000000:
@@ -86,5 +89,4 @@ module ALUcontrol(input [1:0] ALUop,
                 ALUinput = 0111;                                                                                                                                                                                                           
         endcase
     end
-       
 endmodule

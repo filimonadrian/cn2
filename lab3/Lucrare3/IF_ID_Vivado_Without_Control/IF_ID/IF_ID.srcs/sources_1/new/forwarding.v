@@ -36,8 +36,8 @@ module forwarding(input [4:0] rs1,
         
         // hazard in stagiul EX
         if ((ex_mem_regwrite == 1) &&
-            (ex_mem_rd[4:0] != 0) && 
-            (ex_mem_rd[4:0] == rs1[4:0])) begin
+            (ex_mem_rd != 0) && 
+            (ex_mem_rd == rs1)) begin
                 
             forwardA = 10;
         
