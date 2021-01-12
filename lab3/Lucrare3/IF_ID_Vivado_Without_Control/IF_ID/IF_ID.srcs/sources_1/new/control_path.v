@@ -83,8 +83,6 @@ module control_path(input [6:0] opcode,
                 Branch = 0;
                 ALUSrc = 1;
             end
-            // nu aveai default cu totul pe 0
-            // ALUop[1] inversat cu ALUop[0]
             default : begin 
                 ALUop[1] = 0;
                 ALUop[0] = 0;
