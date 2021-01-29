@@ -184,8 +184,6 @@ module RISC_V(input clk,
                             PC_Branch_MEM,
                             REG_DATA2_MEM_FINAL);
 
-    // stagiul de mem
-    // s-ar putea ca unele de flaguri sa fie gresite
     // din figura: alu_Result este address
     // write_Data este iesirea din al doilea mux 4:1
     // iesirea din modulul de memorie este read_data
