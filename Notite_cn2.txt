@@ -1,0 +1,729 @@
+Arhitectura: 
+
+Concepte MUST:
+- stall-uri
+- intarzieri
+- intreruperi
+- bypass
+- dependenta si anti-dependenta
+- banda de asamblare
+- procesor superscalar(ce dreq o mai fi si ala)
+- predictori
+
+
+Cursul 1:
+
+
+Arhitectura calculatoarelor:
+
+    Aplication
+    Algo
+    Operating System/ Virtual Machines
+    ---------------------------
+    Instruction Set Architecture
+    Microarhitecture
+    Register-Transfer Level
+    ---------------------------
+    Gates
+    Circuits
+    Devices
+    Physsics
+
+Toate cele 3 nivele formeaza arhitectura calculatoarelor.
+
+ISA: 
+- setul de instructiuni disponibil pentru un anumit procesor
+- este un layer abstract pe care il oferim software-ului care nu este conceput a se schimba foarte mult sau foarte des
+- incearca sa ofere programatorului modelul abstract al masinii
+
+Microarhitecture:
+- partea de constructie a unui chip 
+RTL:
+- se face prin intermediul verilogului
+- descriere la nivelul de transfer intre registre
+
+
+Arhitectura calculatoarelor este la mijloc si se poate modifica datorita unor impuneri care pot veni de sus in jos
+(Aplicatie -> Nivelul fizic sau invers)
+Modificari: Aplicatie -> Nivelul fizic:
+    -EX ISA-ul ar putea sa fie imbunatatit (plecam cu un set de instructiuni si introducem pentru procesarea audio-video noi instructiuni)
+    
+Modificari: Nivelul fizic ->  Aplicatie
+    - noile tehnologii: se schimba marimea: de la 14nm la 10nm: pe aceeasi arie de siliciu intra mai multi tranzistori
+    - deci as putea sa maresc spatiu de memorie cache.
+
+Prima masina(1940-1950: IAS Machine(Von Newmann)
+
+Legea lui Moore: la fiecare 2 ani vor de 2 ori ori mai multi tranzistori pe care ii 
+    putem cumpara pentru aceeasi suma de bani
+
+Cel mai rapid device care face instructiunile in paralel este un FPGA
+
+Arhitectura/ISA:
+- memorii si registre
+- instructiunile si cum lucreaza ele
+- intreruperi
+- I/O
+- tipuri de date
+
+Microarhitectura(organizare):
+- Compromisul necesar in implementarea ISA-ului:
+    - Viteza
+    - energia consumata
+    - costul final
+
+Un compilator inteligent:
+- elimina instructiunile redundante
+- modifica ordinea instructiunilor astfel incat sa obtin la final acelasi rezultat, dar sa nu am hazarduri de date
+
+Un arhitect de sistem trebuia sa ia decizii cat mai bune de proiectare:
+- usurinta in programare(trebuie facuta pentru oameni care sa programeze pe ea)
+- arhitectura usor de inteles
+- durata de viata a arhitecturii sa fie cat mai mare - creem un procesor, se vinde in milioane de bucati
+    Ex: i5, i7 - durata de viata foarte mare
+- energia consumata: trebuie sa consumam mai putina energie: mai rece, fiabilitate mai mare
+
+Separatie dintre arhitectura si microarhitectura:
+
+In anii 1960, IBM facea cate un procesor fiecare scop. Fiecare procesor avea:
+- ISA diferit
+- propriu lui sistem de I/O.
+- Propriu sau asamblor
+- compilator
+- biblioteci
+
+Unificarea celor 2 a dus la creearea primului procesor generalist
+IBM 360 - principiile de proiectare(find in curs pentru principiile procesorului generalist)
+
+Intrebari: 
+ISA este un layer abstract:
+- oferit software-ului
+- menit a se schimba NU FOARTE DES
+
+Microarhitectura se refera la:
+modalitatea de construire a unui chip(teorretic nu conteaza de care chip!!!!!)
+
+Este important sa avem compilatoare cat mai inteligente deoarece:
+- eliminam usor instructiunile care nu ne sunt utile
+- eliminam mai usor instructiunile care sunt reduntante
+- eliminam mai usor instructiunile care sunt interdependente
+
+
+La inceput fiecare procesor avea(pana in 1960):
+- propriu sau set de instructiuni
+- propriu sau sistem de I/O si storage secundar
+- propriile sale asambloare, compilatoare si librarii
+- un sistem de cache....SLOBOZ LA TAVA
+
+
+RTL poate permite descrierea unui circuit prin:
+- intermediul limbajului verilog/vhdl
+
+Misiunea unui arhitech de calculatoare este aceea de a lua decizii cat mai subtile de proiuectare pentru a indeplini anumite cerinte precum: 
+- o durata de viata cat mai mare a arhitecturii
+- usurinta in programare
+- consum de putere cat mai mic pentru a face calculatorul sa ruleze cat mai rapid
+
+
+
+Cursul 2:
+
+
+Banda de asamblare(pipeline):
+
+Principii: 
+
+1- toate obiectele trebuie sa treaca prin aceleasi stagii(nu pot sari stagii)
+- Pentru a scrie un rezultat intr-un registru trebuie sa ii stiu adresa
+- faza de scriere este la final
+- trebuie sa port informatia prin fiecare stagiu, pana la final
+
+2- intre oricare 2 stagii nu este permisa partajarea resurselor
+- in orice stagiu executia acelui stagiu trebuie sa fie asigurata de harware(nu avem voie sa luam un hardware de la un stagiu si sa il duce in alt stagiu)
+
+    - in MIPS avem 2 memorii - o memorie de instructiuni si o memorie de date
+
+3- intarzierea de propagare intre toate stagiile este aceeasi
+- pentru a calcula timpul pe fiecare stagiu:
+    - trebuie sa stabilim ce hardware avem pe fiecare stagiu(circuit combinational -- nu avem voie cu clock decat pe registre, )
+    - NU EXISTA IN ALTA PARTE CLOCK DECAT PE REGISTRE
+    - putem sa avem unul sau mai multe circuite combinationale in acealasi stagiu
+    - se detetermina calea critica prin circuit si ne uitam la fiecare poarte. Pentru fiecare poarta sunt oferiti timpii de comutatie de H la L si invers. 
+    - dupa care in circuit facem maximul dintre ele, apoi se face maximul intre stagii, pentru a vedea cat trebuie sa stam pentru ca toate sa fie egale
+    - este de fapt intarzierea minima
+
+Probleme:
+1- dependenta instructiunilor una de cealalta(asa vin ele de la programator)
+
+Conditii:
+- ca sa merg in banda de asamblare, pe langa bitii care determina marimea registrelor, bitii folositi pentru calea de date trebuie adaugati
+biti pentru controlul circuitelor hardware care se gasesc in fiecare stagiu al benzii de asamblare
+
+
+Performanta unui procesor. Legea lui Iron:
+
+Timp/Program = instructiuni/Program * Cicli/Instructiune * Timp/Ciclu
+
+1- pentru a minimiza primul termen -- trebuie un compilator mai bun(cod sursa, compilator, ISA).
+Un compilator cat mai bun:
+- poate sa elimine codul care este redundant
+- reducere/eliminare de cod
+- sa incerce sa imbine 2 instructiuni impreuna(nu are rost sa executam 2 instructiuni daca pot fi imbinate)
+
+2- pentru a minimiza al doilea termen:
+- cea mai importanta este microarhitectura
+- un procesor care este in banda de asamblare va executa mai multe instructiuni decat un procesor care nu este in banda de asamblare
+
+3- timpul per ciclu
+- depinde de microarhitectura
+- cu cat ai o banda de asamblare cu mai multe stagii cu atat instructiunea se executa mai repede
+- tehnologia de baza: trebuie sa punem cat mai multi tranzistori. 
+- o sa fie o problema cu disiparea de caldura
+
+Hazarduri:
+
+Hazard structural - doua instructiuni necesita aceeasi resursa hardware la acealasi moment de timp
+- nu putem sa citim si sa scriem intr-o memorie la acelasi moment de timp
+Solutie:
+    - programatic - compilatorul nu prgrameaza spre executie instructiuni care pot creea hazard structural
+    - stall - hardware-ul include logica de control care opreste executia curenta pana cand instructiunea anterioara
+        nu mai utilizeaza resursa generatoare de hazard
+    - Duplicare - duplicarea hardware-ului astfel incat fiecare instructiune utilizeaza propriile resurse hardware la acelasi moment de timp
+
+Hazard de date - o instructiune depinde de o valoare data/produsa de o instructiune anterioara
+- vreau sa fac o adunare si imediat dupa o scadere
+- Este un hazard de date pentru ca nu am apucat sa obtin valoarea pentru $1
+add $1 $2 $3
+sub $5 $1 $4
+
+Solutie: 
+    - planificare (compilatorul)
+    - STALL - delay in execution (nu este situatia cea mai fericita)
+    - Bypass - calea de date permite valorilor de a fi trimise catre un sstagiu anterior inainte ca instructiunea precedenta sa paraseasca banda de asamblare
+        - pot sa iau rezultatul din stagiul de execute si sa il trimit direct unde am nevoie(niciun alt stagiu nu-mi modifica valoarea calculata)
+        - pot sa fac bypass de la execute pana la sfarsit(WB).
+        - trebuie sa adaug un multiplexor cu un semnal de comanda
+    - specularea - se presupune ca nu exista probleme. In caz contrar, se sterge instructiunea speculativa si restart
+        - shadow registers: niste registre duplicat in care se calculeaza si cealalta ramura, nu doar ramura principala
+            - daca se greseste predictia, minimizam timpul de penalizare(putem lua direct valoarea calculata, desi trebuie sa modificam toata banda de asamblare)
+Hazard de control - o instructiune ce trebuie executata depinde de decizia ce trebuie luata in cadrul unei instructiuni anterioare
+- daca am un if trebuie sa stabilesc daca merg in stanga sau in dreapta
+- de regula, la aceste hazarde, sunt 2 metoda: 
+    - 
+    - 
+
+Minutul 12:40 
+Executia unei instructiuni in cazul procesorului de mai jos fara banda de asamblare:
+- presupune necesitatea unui ciclu de ceas mare
+- presupune trecerea prin toate elementele de la stanga la dreapta
+
+
+
+Cursul 3:
+
+
+Hazard de date
+
+Introducerea de STALL-uri(Bubbles sa interlock pipelines)
+
+- Avem nevoie de un multiplexor: care verifica daca registrul actual folosit este acelasi cu unul din instructiunile trecute
+- Daca este, trebuie sa adaug nop-uri, altfel o rulez ca atare
+ws = write source(ESTE DE FAPT UNDE VREAU SA SCRIU)
+
+Minutul 29:20
+Ca sa verific daca am un hazard, nu ma intereseaza valoarea lui $r1, ci ma intereseaza daca
+    (identificatorul registrului $r1)=(identificatorul registrului $r1)
+
+Implementare:
+32:05
+Deci, comparam registrele sursa ale instructiunii care se afla in ID cu registrul destinatie al unei instructiuni necomise inca
+- Daca se gaseste aceasta egalitate, se introduce stall
+
+Semnalul de control C_stall ar trebui sa comande registrul PC, IR si multiplexorul care adauga nop
+Putem spune stall oricarei instructiuni ce este in faza IF a BA si adauga instructiuni nop in BA in stagiile urmatoare
+
+Obs! - minutul 36:20
+- nu trebuie sa adaug mereu nop-uri daca ws == rs sau rt
+- poate fi alt tip de instructiune si nu este neaparat sa am ca parametru 2 registri(sw sau lw)
+
+minutul 39:10
+- DACA NU AM SCRIERE IN REGISTRU, NU TREBUIE SA MAI TESTEZ CONDITIA. Daca pentru fiecare store verific ceva ce nu are relevanta, pierd cicli de ceas
+Rezolvare: Folosesc un semnal Write enable(WE). daca we=0 citesc din memorie, altfel scriu in memorie.
+Instructiunile de tip I NU SCRIU NICIODATA INTR-UN registru
+Trebuie sa adaug semnale de WE doar pentru instructiunile la care operanzii nu sunt decat in rs si rt, iar restul este in campul imediat.
+re = read enable
+
+Am nevoie de RE pe care il sparg in 2 pentru ca voi avea nevoie de 2 operanzi
+RE deoarece nu orice instructiune scrie un registru
+
+minutul 56:30
+Multiplexorul din dreapta:
+Este folosit pentru instructiunile jump si jump to link. Registrul unde vreau sa sar este vazut ca o destinatie implicita(by default este destinatie 31).
+Salturile nu au nevoie sa citeasca, ele doar scriu(am nevoie sa scriu unde sar)
+
+- pot sa determin WS si WE in functie de RS si RT
+
+RE1 il folosesc pentru primul operand, RE2 pentru al doilea
+RE1 este cam la toate, in afara de J si JAL(pentru ca nu au primul operand)
+RE2 nu este folosit decat pentru ALU si SW(store), in rest este off
+
+Slide 44
+Conditia de stall:
+Fac o comparatie dintre identificatorul registrului sursa in faza de decode si identificatorul registrului de scriere in faza de EX, MEM, WB.
+SAU 
+testez aceeasi egalitate cu stagiul de MEM daca am semnal de WE si inchid cu RE1 pentru ca este primul operand
+
+- Trebuie sa inchid cu RE1 si RE2 pentru ca tot timpul este vorba de operanzii care sunt intr-o instructiune.
+
+- LOAD(SI STORE) este disponibil abia in faza de WB. Nu putem sa facem bypass pentru ca asta inseamna sa ne intoarcem in banda(INTERZIS), deci trebuie sa introducem STALL-uri
+- ALU si ALUi pot beneficia de bypass(pentru ca pot sa iau date necalculate, dar care inca nu au fost scrise)
+ LOAD, STORE, JMP, JAL -- vor folosi stall pentru ca au rezultatul disponibil abia in stagiul de WB
+
+
+
+ Curs 4
+
+ Hazarduri de control
+
+IR = INSTRUCTION REGISTER
+
+De ce trebuie sa introducem un nop daca nu am hazard?
+R: Se introduce un nop deoarece la momentul de timp t1 nu stim daca instructiunea urmatoare este instructiunea care se executa sau nu
+Voi putea sa aflu daca instructiunea anterioara este o instructiune de salt sau nu abia dupa faza de ID.
+Practic abia la t2 o sa stiu daca este o instructiune de tipul jump sau branch.
+In cazul in care as avea o instructiune de tipul jump sau branch si ele s-ar executa in mod normal, in mod automat as avea un hazard structural.
+Pentru ca eu nu stiu decat dupa faza de ID ce tip de operatie este I1, atunci trebuie sa identific niste metode, sa fac ceva astfel incat sa limitez 
+efectele hazardului de control, adica sa nu intru intr-un hazard structural. 
+
+JUMP:
+- este necesar sa ne uitam la opcode pentru a determina daca este JUMP sau nu
+- trebuie sa ne uitam la offset-ul care vine din instructiune precum si la valoarea curenta a PC-ului
+- trebuie sa ma uit la valoarea curenta a PC-ului
+
+Toate aceste 3 conditii imi dau siguranta ca am o instructiune de tipul jump
+
+Jump Register:
+- opcode ne va spune daca avem o instructiune de acest tip sau nu
+- nu este necesarea utilizarea offset-ului deoarece sarim direct la valoarea registrului
+
+slide 37:
+- Pentru ca avem un jump, trebuie sa facem un STALL pentru urmatoarea instructiune, dar trebuie si un mecanism de kill
+- de aceea dupa ce adaugam nop,-ul(trebuie sa am un mux)
+- am calculat PC+4 si merg in IR();
+- din IR fac un ADD cu pc-ul meu si aflu adresa unde trebuie sa fac jump-ul
+- intru intru-un multiplexor controlat de PCSrc si PC-ul o sa aiba direct adresa de salt
+
+- Practic am introdus un sumator si un multiplexor
+
+
+Slide 39:
+- ALU are si o iesire numita 0 -- bitul de 0
+    - ne dorim sa testam egalitatea cu 0, deci trebuie sa verificam daca acea conditie ne da 0
+
+Trebuie sa asteptam 2 cicli de ceas pentru ca aceasta conditie de salt este cunoscuta doar in stagiul EX(Doar in ALU am sumator)
+Urmatoarele 2 instructiuni trebuie eliminate, dar pot sa le exlimin doar dupa faza de executie -- abia atunci stiu ca am BEQ conditional
+- trebuie sa adaug nop-uri pana stabilesc eliminarea acelor intructiuni
+- trebuie sa mai introducem un MUX care sa poata introduce NOP-uri
+- si trebuie schimbata conditia pentur IRSrc -- momentan este doar pentru decode. am nevoie de unul si pentru faza de executie
+
+- Pentru instructiunile ce trebuie eliminate, trebuie sa facem intai un stall, iar apoi un kill
+- avem nevoie sa stabilim niste prioritati pentru altfel se va face stall pana cand beqz este executat, apoi va trebuie sa faca kill
+    si ambele trebuie facute in acealasi ciclu de ceas, ceea ce va duce la un deadlock -- nu se poate face si stall si kill
+
+- ecuatia de stall trebuie completata. luam cele 2 cazuri(cu sau): daca BEQZ este luata in considerare si daca nu este luata in considerare
+- daca in faza de EX => ZERO => trebuie sa iau branchul in considerare
+
+De ce nu stam daca branch-ul este luat in considerare? 
+R: Tot timpul intructiunea din stagiul ID este invalida si redirectarea cauzata de branch in stagiul de execute trebuie sa aiba tot timpul prioritate.
+
+EXECUTIA ARE INTOTDEAUNA PRIORITATE PESTE DECODE
+- avem practic un branch urmat de un jump
+
+Branch - reducerea penalitatii:
+
+- Un NOP din banda de asamblare poate fi eliminat daca folosim un comparator in stagiul DECODE -- poate mari timpul de ceas!!
+- se pot introduce sloturi in banda de asamblare -- nu se pot introduce oricate sloturi(nu pot sa am mai mult de 3 sloturi)
+
+Balansarea pipe-ului:
+- reusesti sa pui hardware care are cam acelasi timp de executie pe fiecare stagiu
+
+- UN SUMATOR FACE OPERATIA SUPER repede
+- MEMORIA ESTE CEA MAI LENTA
+Hazarduri - Concluzii
+
+- bypass complet este prea scump de implementat
+    - unele cat de bypass utilizate frecvent pot creste timpul ciclului de ceas si astfel se contracareaza beneficiului reducerii CPI-ului
+
+- instructiunile LOAD au o latenta de 2 cicli
+- instructiunile dupa LOAD nu pot utiliza rezultatul instructiunii LOAD
+!!!!!- Branch-urile conditionale pot cauza NOP-uri - Se elimina instructiunile urmatoare daca nu avem slot-uri de intarziere
+
+
+MEMORIA CACHE:
+
+- cu cat cresti memoria, cu atat scade bandwidth ul
+- Performanta procesorului este limitata de latimea de banda pentru memorie si latenta memoriei
+- latimea benzii este reprezentata de numarul de accesari pe unitatea de Timp
+- latenta(timpul pentru un singur acces) memoriei este mult mai mare decat ciclul procesorului
+
+Principii:
+- localizare temporara: daca o locatie este referita, atunci ea va fi referita din nou in viitorul apropiat.
+- slocalizare spatiala: daca o locatie este referita, atunci locatiile invecinate ei vor fi referite in viitorul apropiat
+
+- temporara - prin mentinerea continutului locatiilor accesate cel mai recent
+- spatiala - prin citirea blocurilor de date din jurul locatiei accesate cel mai recent
+
+3 tipuri de memorie cache: 
+Daca vreau sa iau un bloc din memoria principala si sa il pun in cache, unde il plasez?
+- mapare totala(full asociativa - comparator pentru fiecare linie) - pot sa pun blocul oriunde
+- set-asociativa(2-way) - block_memorie modulo nr_seturi - si pun in setul respectiv
+- mapare directa - block_memorie modulo size -- scriu acolo(neaparat acolo). Se suprascrie
+
+Parametri:
+
+- numar de linii - C
+- dimensiunea liniei - L
+- gradul de asociativitate - m
+
+O adresa de memorie generata de ALU se descompune in:
+- TAG - t
+- INDEX - i
+- OFFSET - d
+
+Tag - ne zice ca intr-adevar data este in memorie
+Index - ne da setul
+Offset - care block trebuie luat
+
+
+Cursul 5:(9:33)
+Slide 108
+
+Tipuri de hazarduri:
+
+Depdendenta de date(RAW)
+- r2 <- r1 op r2
+- r5 <- r3 op r4
+
+Anti-dependenta(WAR)
+- r3 <- r1 op r2
+- r1 <- r4 op r5
+- cand instructiunile nu sunt executate in ordine sau mai multe instructiuni se executa in acelasi timp
+- exact ce se intampla si in banda de asamblare
+Dependenta de iesire(WAW) - dependenta de iesire
+- r3 <- r1 op r2
+- r3 <- r6 op r7
+- avem 2 operatii pentru care trebuie sa parcurgem intreaba banda de asamblare
+- ex: o inmultire cu latenta mare si o adunare care se termina inaintea inmultirii ===> depdendenta de iesire WAW
+
+Introducere Superscalar:
+
+- se executa mai multe instructiuni in paralel
+
+Procesoare IO si OOO:
+IO - executia asa cum a fost ea definita
+OOO - se face cu executia de instructiuni in paralel
+
+Slide 111:
+SuperScalar IO 2 cai
+Procesor IO cu 2 benzi de asamblare(Intel pentium)
+- LOAD NU SE POATE FACE DECAT PE PIPE-UL B
+- trebuie sa adaug niste mux-uri ca sa mut instructiunea care vine pe pipe-ul A pe B si invers
+- trebuie sa am 2 decodificatoare
+
+Logica pentru FETCH si alinierea
+- pentru a citi 3 3 trebuie sa sar in mijlocul cache-ului, dar se poate intr-un ciclu de ceas
+- pentru 4 4 nu se poate citi asa cum este definita, trebuie o memorie cache dual port
+Cu constrangeri(cele taiate cu rosu):
+- pot sa fac fetch, iau instructiunea, dar nu pot sa o folosesc
+
+Slide 122
+Exceptii in procesoare superscalare:
+- super scalar in-order: intai se executa LW si apoi syscall
+- SYSCALL = intrerupere
+IN ORDER=> intai LW, apoi syscall
+- in mod normal, LW trebuie sa mearga pe B ca este cel care poate sa o execute
+Trebuie sa iau o decizie cu ce se intampla. Aceasta decizie se ia la commit point(CP).
+- daca n-am nicio problema -- execut lw si apoi fac syscall-ul
+- daca am o problema:
+    - fie chilaresc lw -- am intrazieri
+    - fie il las sa treaca si ignor rezultatul
+
+Bypassing:
+- avem doar 6 puncte(3 pe A, 3 pe B), dupa ALU
+- problema este ca, cu cat pipe-urile sunt mai lungi cu atat va creste logica
+- pentru a face logica(pentru un bypass total) trebuie sa avem foarte multe fire(6). 
+- putem sa nu facem bypassing, si ar fi foarte simplu
+
+slide 18
+SE POT FACE CLUSTERE DE SUPERSCALAR
+- se mai pune un procesor deasupra lui cu 2 pipe-uri
+    - putem alege pe care procesor sa mergem si in interiorul lui sa alegem pe care banda de asamblare sa mergem
+
+Impartirea stagiilor de DECODE si ISSUE
+- pentru reducerea complexitatii trebuie sa impartim anumite stagii
+    - in loc sa avem doar stagiul de decode, vrem sa mai avem un stagiu in plus (stagiul de issue).
+    - D = DECODE = posibilitate de a rezolva hazardurile structurale
+    - I = ISSUE(faza de sosire) - citirea fisierului de registre, bypasss, issue
+
+    - ar fi 6 stagii de pipe. Asta ne ajuta la switch-ul operanzilor intre pipe-uri si la bypass.
+    - pentru branch trebuie sa facem niste predictii. Cu cat nr. de stagii creste, cu atat predictia scade
+
+- trebuie facut un compromis intre acuratetea predictiilor si numarul de stagii din pipe. 
+
+Cursul 6:
+
+Intreruperi
+
+- un eveniment intern sau extern care necesita a fi procesat de catre un alt program
+- evenimentul este unul neasteptat sau rar din punctul de vedere al programului
+
+INTRERUPERE = un eveniment care necesita atentia procesorului
+Ex: 
+- extern: am ramas fara hartie in imprimanta
+- intern: temperatura procesorului este foarte mare
+
+- intreruperile sunt eventimente neasteptate si foarte rare
+- putem sti destul de greu cand apare o intrerupere.
+- practic instructiunea Ii in cazul acesta nu va mai face commit, ci se va intra in executia unei subrutine de tratare a intreruperilor
+- o intrerupere precisa este atunci cand aceasta apare inainte de commit point
+
+- ce trebuie sa faca procesorul cand decide sa proceseze o intrerupere?
+R: Trebuie sa opreasca programul curent la instructiunea Ii. Asta inseamna ca toate intructiunile pana la instr. 
+I(i-1) trebuie sa se termine in banda de asamblare. Aceasta se numeste intrerupere precisa.
+    Trebuie sa salvam PC-ul intructiunii intr-un registru special numit EXTERNAL/EXCEPTIONAL PROGRAM COUNTER(EPC).
+    - dezactiveaza intreruperea si transfera controlul catre o intrerupere desemnata de controlul de intreruperi, care control va rula in kernel mode. 
+
+Sunt de 2 feluri:
+1- asincrone - un eveniment extern
+    - dispozitive I/O care trebuie reparate
+    - expirarea timpului
+    - intreruperi de curent
+    - erori hardware
+
+2- sincrone - o exceptie interna
+    - OPCODE nedefinit, instructiuni privilegiate
+    - overflow aritmetic, exceptie FPU
+    - accese de memorie nealiniate
+    - exceptii la memoria virtuala - page faults, TLB miss, violari ale protectiei
+    - exceptii software: acces sistem(de ex. salturi in kernel)
+
+- Ce se intampla cand apar mai multe intreruperi simultan? Care intrerupere este prioritara?
+R: intr-un mod normal, in procesor exista un mecanism de prioritizare a intreruperilor. Practic avem un codificator de prioritati care ne spune care este prioritatea pentru fiecare intrerupere care 
+poate sa apara. Cam toate masinile poseda mecanisme de prioritizare a intreruperilor. 
+
+- Cine decide cine are prioritatea mai mare? 
+R: Sistemul de operare. Cateodata SO poate sa decida ca nici o intrerupere nu este prioritara. In acest caz, ele sunt duse intr-o zona speciala unde vor fi resortate
+
+- Ce se intampla dpdv. hardware cand se trateaza o intrerupere?
+R: Practic trebuie sa executam un program dintr-o alta locatie in timp ce se executa alte instructiuni. MIPS are o solutie la aceasta problema cu registrece 28 si 29, care
+sunt permise sa fie utilizate doar de catre controllerul de intreruperi. SO-ul le utilizeaza pentru a putea sa salveze starea masinii in registrele 28 si 29, dar nu este solutia cea mai buna. 
+Se poate sa folossim aceste registre ca baza pentru alte registre, adica sa calculam o adresa bazat indexata. Atunci avem nevoie de valoarea registrelor!
+Solutia1: Trebuie sa facem o memorare de adrese undeva in memorie, iar din memorie le putem accesa cand ne intoarcem din intrerupere. 
+In x86: este folosit un stack de memorie;
+
+
+- Atunci cand vin mai multe intreruperi, trebuie sa ne concentram pe prima si pe restul sa le mascam, altfel vom avea intrerupere(intrerupere(interupere..)).
+- daca nu am avea mascare: EPC in EPC in EPC
+
+Minutul 10
+Practic, instructiunea Ii+1(sau Ii, depinde de arhitectura) se va salva in EPC
+
+Controlul exceptiilor
+
+Cum si unde controlam intreruperile externe asincrone? 
+- trebuie sa avem un mecanism cu care sa le prioritizam si sa dam raspunsul la care este cea mai veche instr. de intrerupere din pipe
+
+PC address Exception - daca avem o adresa pe 64, dar utilizam doar 40 => in memorie vom avea o gaura si ajungem la concluzia ca este o adresa invalida
+Illegal Opcode - este un opcode pe care l-am dat, dar el nu exista definit in ISA
+Overflow
+Data address exceptions
+
+Slide 6
+Commit point
+- se pune cat mai aproape de finalul benzii de asamblare pentru ca vrem sa stim tot ce s-a intamplat in banda de asamblare.
+- dupa commit point este posibil sa ma intorc in fazele anterioare
+- commit point-ul se pune in Banda de asamblare acolo unde nu mai pot fi luate exceptii in pipe 
+- daca as pune commit point-ul mai devreme, nu as putea sa mai rezolv intreruperile care apar dupa el
+
+- aici exista si EPC-ul(dreapta jos). El preia adresa PC-ului. El avanseaza odata cu avansarea programului in BA.
+    Cand ajung la commit point ce se intampla? La procesoarele OOO pot sa nu il folosesc.
+- Cine ne spune daca luam sau nu luam o intrerupere? 
+R: Registrul Cause. Este de fapt un priority encoder ca sa pot sa am codificarea intreruperilor(sa stiu pe care le iau si pe care nu le iau).
+     Prioritizarea se va face de la stanga la dreapta. 
+
+CP = Commit point
+Controlul exceptiilor - PASI
+ - mentine un flag de exceotie in pipe pana ajung la CP
+ - exceptiile in stagiile anterioare ale pipe-ului se vor suprascrie exceptiile mai tarzii pentru o instructiune data
+ - injectarea de intreruperi externe la CP - le va suprascrie pe celelalte
+ - daca avem o exceptie la CP atunci facem update la CAUSE si EPC.
+
+
+Specularea exceptiilor:
+- ne trebuie un mecanism de predictie
+- exceptiile sunt rare, deci putem presupune ca nu exista
+
+Verificarea mecanismului de predictie:
+- exceptiile detectate la finalul executiei instructiunii in pipe - exista hardware special pentru diferite tipuri de exceptii
+
+Mecanismul de recuperare:
+- doar scriem starea arhitecturala la CP
+- lansarea controlleru-ului de exceptii dupa golirea pipe-ului
+
+Slide 9 - 24:40
+
+- Daca la instructiunea ADD vine un overflow.
+- pana sa imi dau seama, XOR, sub si add intra in executie - eu nu pot sa imi dau seama de aceasta problema decat atunci cand am CP.
+    - CP il pun dupa intrerupere. tot ce este dupa CP trebuie sters si inceputa executia programului care este in subrutina de tratare a intreruperii.
+
+Slide 10
+Procesoarele Out-of order(OOO)
+
+Ce presupune fiecare stagiu? Minutul 27:45
+
+Frontend - IF  + ID
+ISSUE - Toti operanzii sunt gata
+Writeback - Scriere register file
+Commit - faza de executie, faza in care nu mai pot sa ma mai intorc in banda de asamblare(faza finala pentru toate datele)
+
+Scoreboard - structura care mentine informatia despre !!ce instructiune este gata de executie!!
+Reorder Buffer - Cand executam instructiuni in OOO. Este un loc unde putem sa reordonam instructiunile pentru comitere in IO
+Store Buffer - mentinere memorie pana la CP(commit point). - nu vreau sa scriu memorie mai devreme de commit point pentru ca datele se mai pot modifica.
+Issue Queue - o sosire de instructiuni OOO. Este cea care tine depdendintele RAW, WAW, WAR. Este structura care ne tine dependentele intre instructiuni si ne va
+spune cand s-au rezolvat aceste dependente.
+
+De ce am dori sa facem procesoare OOO? Slide 11
+
+0->2 RAW
+2->3 RAW
+4->5 RAW
+4->6 RAW
+
+Caut dependintele si incep sa construiesc un grafurile.
+
+- Intr-un procesor IO nu pot sa rulez acele 2 grafuri in acealasi moment de timp.
+- Daca ar fi un branch, cele 2 fluxuri ar putea deveni dependente
+
+Slide 14:
+3 unitati functionale:
+- function unit execution
+- function unit mem
+- function unit multiplication
+
+Slide 15(45:00)
+ARF - Architectural register file -- memoreaza intreaga stare canonica a masinii comise; este dupa CP
+SB = Scoreboard - mentinere valori speculative
+    Intre issue si W am niste valori speculative(se pot modifica oricand)
+
+OBS!!! - toate valorile la care facem bypass sunt niste valori necomise(sau nespeculative)
+
+- dupa ce valorile au fost comise/daca intru in intrerupere, SB-ul trebuie sa fie curatat
+- dupa o intrerupere, SB-ul va avea noile date pentru tratarea intreruperii. Suprascriind SB-ul, nu vom mai avea acces la datele
+    vechi daca acestea nu vor fi scrise undeva in memorie
+
+Scoreboard
+
+- pe linii sunt registrele
+P = pending - daca e 1 => am o cerere in asteptare de a scrie in registru
+F = unitatea structurala care scrie in registru(3 unitati functionale - scrise mai sus)
+- date disponibile, de la stanga la dreapta
+
+- la fiecare ciclu de ceas trebuie sa fac un shift right
+
+Exemplu: slide 18
+Program | executia in pipe
+Cel de jos este scoreboard-ul
+
+RADA RADA RADA
+
+
+Curs 7
+
+Specularea si salturile
+
+I2OI:
+
+PRF Physical Reg. File, ARF Architectural REg. file, ROB Reorder Buffer, FSB stiva
+FSB - mentine instructiunile care trebuie comise
+    in Rob pot sa sucesc instructiunile. Pot sa omor dependentele. Dar vor fi multe instructiuni si le pun in stiva sas le iau in reorder buffer.
+    Cand devin independente, pot sa le execut si sa le comit, altfel nu.
+- in acest caz instructiunea nu trebuie sa scrie PRF-ul - obligatoriu.
+    - scrierea(faza de commit) este inorder.
+    - pentru a putea sa comit, toate instructiunile din ROB trebuie sa mearga in ARF
+
+IO3:
+
+ - Acest tip de procesor nu poate sa aiba intreruperi precise --- nu putem sa avem evenimente mai devreme de CP(commit point).
+ - instructiunea nr 4 ajunge in faza de WB si altereaza register file-ul inainte ca eu sa pot sa determin daca are loc sau nu BEQZ
+    - nu este bine pentru ca nu ar trebui sa o execut
+    - Nu pot sa ma intorc pentru ca am trecut de CP
+
+Solutia: introducerea de STALL-uri pana cand Branch-ul este limitat.
+            - este limitata performanta
+
+IO2I:
+
+Mai exista un IQ(instruction Queue)
+    - am faza de OOO
+    - pot sa iau din queue instructiuni pe care sa le arunc in executie.
+
+I4 si I5 sunt in stare de W, desi nu s-a hotrarat BEQZ. 
+- se scrie in PRF(e o structura de date diferita fata de register file-ul procesorului)
+- poate sa apara intrerupere, sunt inainte de commit. Daca apare intrerupere, Mut tot ce este in ARF in PRF(revin la o stare anterioara).
+
+- instructiunile 2 si 4 produc rezultate corecte
+- I4 produce un rezultat in PRF si nu dorim sa mentinem rezultatul
+- este necesar sa sterg sstarea speculativa care este in PRF. (Ma intorc SELECTIV)
+    - trebuie sa fac diferentierea intre Instr. speculative si cele care nu sunt
+
+- Primele 3 au comis
+
+- register file-ul contine date, dar cere care au fost comise, dar are date vechi, nu datele noi
+- ca sa fac un rollback trebuie sa iau datele din ARF si sa le pun in PRF.
+    - trebuie sa fac un rollback pentru ca trebuie sa omor instr. care au produs ceva, dar au o sstare(un r mic, care nu le lasa sa faca, commitul).
+    - asa pot sa fac reintoarcerea. DAca as face commitul, nu as putea sa mai mai intorc(sa fac rollbackul).
+    - pentru instructiunile de la 4 la 13 trebuie sa astept sa se termine pipe-ul si am 2 solutii:
+            - ce fac cu ROB-ul? El teoretic trebuie sa pointeze la urmatoarea instr. 
+            - instr. mele din ROb trebuie sa sara. Trebuie sa suprascriu niste instr. speculative => avem un rollback speculativs
+
+
+Redenumirea registrelor:
+
+Dependintele RAW sunt adevarate deoarece citirea necesita terminarea unei scrieri
+
+Coada de memorie IO:
+
+- Executam toate instructiunile de LOAD SI STORE in ordinea trecuta in program
+- lw si sw trebuie sa vina in ordinea in care au fost puse initiale
+
+Limitari pentru superscalari
+
+Curs 8:
+
+VLIW
+
+- este foarte strans legat de compilator
+- latenta operatiilor este o constanta si este cunoscuta
+
+Model EQ(egala)
+
+- o operatie are efect exact la latenta specificata si niciodata mai devreme
+- cand moare R1? Atunci cand isi termina latenta, nu in momentul in care este suprascris
+- se asteapta latenta, altfel nu il intereseaza
+- compilatorul depinde de faptul ca registrele nu sunt disponibile mai devreme
+
+Model LEQ - mai mica sau egala
+- o valoare din reg. trebuie sa devina valida intre momentul de gata(ISSUE) si latenta(unde spune latenta ca se termina)
+- compilatorul nu poate sa programeze o intstr. mai devreme de momentul in care se termina latenta.
+    - dar este important pentru ca am doar intreruperi precise
+    - nu exista interlocks, scoreboard
+
+Compilatorul VLIW
+- planifica operatiile pentru executia paralela
+- garanteaza paralelismul in interiorul instructiunii
+- planifica pentru evitarea hazardurilor de date (fara interlock)
+- separa operatiile cu NOP-uri explicite
+
+- la a doua rulare, compilatorul are deja dependentele incarcate si nu o sa mai fie probleme
+ 
+
